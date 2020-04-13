@@ -1,7 +1,7 @@
 {
-  "from": "SuplemaxBH",
+  "from": "Me",
   "smsgateway": {
     "url": "https://smsgateway.me/api/v4/message/send",
-    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhZG1pbiIsImlhdCI6MTU4Njc5NjAyMCwiZXhwIjo0MTAyNDQ0ODAwLCJ1aWQiOjc5MjE4LCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.vrPwJ913Rb0ITX1dJ_9HuyX00zBbdb3oPmLML3u-AJU"
+    "token": ""
   }
 }
