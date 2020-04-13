@@ -1,3 +1,3 @@
-"device","timestamp","phone","name","message"
-116630,1586799380,"(31)99999-8876","Gladyston","OLA #NAME#. Agora são #DATE# - #TIME#"
-116630,1586799500,"(31)99999-8876","Gladyston","OLA #NAME#. Agora são #DATE# - #TIME#"
+"device","timestamp","phone","name","product","value","message"
+116630,1586799380,"(31)99999-8876","Gladyston","Gold 907g","R$ 149,90","OLA #NAME#. Agora são #DATE# - #TIME# - Estamos com promoção do #PRD# por apenas #VALUE#"
+116630,1586799500,"(31)99999-8876","Gladyston","Stimerex","R$ 169,90","OLA #NAME#. Agora são #DATE# - #TIME# - Estamos com promoção do #PRD# por apenas #VALUE#"

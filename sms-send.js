@@ -35,7 +35,11 @@ fs.createReadStream(inputFile)
 
       data.message = data.message.replace("#TIME#", moment(data.send_at * 1000).format("HH:mm"));
       data.message = data.message.replace("#DATE#", moment(data.send_at * 1000).format("DD/MM/YY"));
+
       data.message = data.message.replace("#NAME#", data.hasOwnProperty('name') ? data.name : "");
+
+      data.message = data.message.replace("#PRD#", data.hasOwnProperty('product') ? data.product : "");
+      data.message = data.message.replace("#VALUE#", data.hasOwnProperty('value') ? data.value : "");
 
       delete data.name;
       delete data.phone;

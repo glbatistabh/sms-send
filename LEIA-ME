@@ -10,6 +10,8 @@ PASSO-A-PASSO
   - timestamp: horario (no formato timestamp) de envio da mensagem (opcional)
   - phone: numero do telefone do destinatario
   - name: nome do destinatario (opcional)
+  - product: nome do produto (opcional)
+  - value: valor/preço do produto (opcional)
   - message: mensagem a ser enviada
 
 
