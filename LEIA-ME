@@ -1,4 +1,3 @@
-
 -------------
 PASSO-A-PASSO
 -------------
@@ -20,8 +19,15 @@ PARA ENVIAR SMS
 Execute: node sms-send.js ARQUIVO.CSV [true]
 
 
-
 ------------------
 PARA CONSULTAR SMS
 ------------------
 Execute: node sms-status.js ID_MESSAGE
+
+
+------------
+Referencias:
+------------
+Node - https://nodejs.org/
+SmsGateway - https://smsgateway.me/
+TimestampConvert - https://www.timestampconvert.com/
