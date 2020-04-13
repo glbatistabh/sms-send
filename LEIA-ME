@@ -1,0 +1,27 @@
+
+-------------
+PASSO-A-PASSO
+-------------
+1) INSTALAR EM SEU COMPUTADOR O NODE (https://nodejs.org/)
+2) CRIAR UMA CONTA NO SITE 'https://smsgateway.me/'
+3) INSTALAR O APP 'SMSGATEWAY' NO CELULAR ANDROID QUE FARA O ENVIO DOS SMS E FAZER LOGIN COM OS DADOS DA CONTA CRIADO NO PASSO 1
+4) ACESSAR 'My Account->Devices' E anotar o ID do Device (celular)
+5) Criar um planilha CSV com as seguintes colunas:
+  - device: ID do device
+  - timestamp: horario (no formato timestamp) de envio da mensagem (opcional)
+  - phone: numero do telefone do destinatario
+  - name: nome do destinatario (opcional)
+  - message: mensagem a ser enviada
+
+
+------------------
+PARA ENVIAR SMS
+------------------
+Execute: node sms-send.js ARQUIVO.CSV [true]
+
+
+
+------------------
+PARA CONSULTAR SMS
+------------------
+Execute: node sms-status.js ID_MESSAGE

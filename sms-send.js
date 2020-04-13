@@ -31,11 +31,11 @@ fs.createReadStream(inputFile)
 
       data.phone_number = data.phone.replace(/[^0-9]/g, '');
 
-      data.send_at = data.timestamp ? data.timestamp : moment().unix();
+      data.send_at = data.hasOwnProperty('timestamp') ? data.timestamp : moment().unix();
 
-      data.message = data.message.replace("#NAME#", data.name);
-      data.message = data.message.replace("#DATE#", moment(data.send_at * 1000).format("DD/MM/YY"));
       data.message = data.message.replace("#TIME#", moment(data.send_at * 1000).format("HH:mm"));
+      data.message = data.message.replace("#DATE#", moment(data.send_at * 1000).format("DD/MM/YY"));
+      data.message = data.message.replace("#NAME#", data.hasOwnProperty('name') ? data.name : "");
 
       delete data.name;
       delete data.phone;
