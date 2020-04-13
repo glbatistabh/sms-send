@@ -7,7 +7,6 @@ PASSO-A-PASSO
 4) ACESSAR 'My Account->Devices' E anotar o ID do Device (celular)
 5) Criar um planilha CSV com as seguintes colunas:
   - device: ID do device
-  - timestamp: horario (no formato timestamp) de envio da mensagem (opcional)
   - phone: numero do telefone do destinatario
   - name: nome do destinatario (opcional)
   - product: nome do produto (opcional)
@@ -32,4 +31,3 @@ Referencias:
 ------------
 Node - https://nodejs.org/
 SmsGateway - https://smsgateway.me/
-TimestampConvert - https://www.timestampconvert.com/

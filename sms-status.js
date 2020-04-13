@@ -10,7 +10,7 @@ if (message_id === undefined) {
 }
 
 request.get({
-  url: config.smsgateway.url.replace("send", message_id),
+  url: config.smsgateway.url_status.replace("ID", message_id),
   headers: {
     'Authorization': config.smsgateway.token,
     'Content-Type': 'application/vnd.api+json',
@@ -26,9 +26,8 @@ request.get({
     console.log(response.body);
   }
   else {
-    console.log("\n\nRESULT:");
-    console.log(body);
+    console.log("\n\nRESULT:", body.status, "\n\nDETAIL:", body);
   }
-  console.log("FIM");
+  console.log("END");
 });
 

@@ -1,7 +1,6 @@
 const config = require('./config/config');
 
 const fs = require('fs');
-const _ = require('lodash');
 const async = require('async');
 const moment = require('moment');
 const csv = require('csv-parser');
@@ -31,13 +30,7 @@ fs.createReadStream(inputFile)
 
       data.phone_number = data.phone.replace(/[^0-9]/g, '');
 
-      data.send_at = data.hasOwnProperty('timestamp') ? data.timestamp : moment().unix();
-
-      data.message = data.message.replace("#TIME#", moment(data.send_at * 1000).format("HH:mm"));
-      data.message = data.message.replace("#DATE#", moment(data.send_at * 1000).format("DD/MM/YY"));
-
       data.message = data.message.replace("#NAME#", data.hasOwnProperty('name') ? data.name : "");
-
       data.message = data.message.replace("#PRD#", data.hasOwnProperty('product') ? data.product : "");
       data.message = data.message.replace("#VALUE#", data.hasOwnProperty('value') ? data.value : "");
 
@@ -45,42 +38,48 @@ fs.createReadStream(inputFile)
       delete data.phone;
       delete data.timestamp;
 
-      //console.log(data);
-
-      console.log(++count + '\tPhone: ' + data.phone_number + '; Send: ' + moment(data.send_at * 1000).format("DD/MM/YYYY HH:mm:ss") + 'h; Message: ' + data.message);
+      console.log(++count + '\tPhone: ' + data.phone_number + ';\tMessage: ' + data.message);
       messages.push(data);
     })
     .on('end', function() {
+
       //so teste
       if (submitData !== true && submitData !== 'true') {
-        console.log("FIM");
+        console.log("END");
         return;
       }
       else {
-        request.post({
-          url: config.smsgateway.url,
-          headers: {
-            'Authorization': config.smsgateway.token,
-            'Content-Type': 'application/vnd.api+json',
-            'Accept': 'application/vnd.api+json'
-          },
-          body: messages,
-          json: true
-        }, function(error, response, body) {
-          if (error) {
-            console.log("\n\nERROR = ", error);
-          }
-          else if (response.statusCode === 400) {
-            console.log("\n\nValidation Error");
-            console.log(response.body);
-          }
-          else {
-            console.log("\n\nRESULT:");
-            body.forEach((message) => {
-              console.log('ID: ' + message.id + '; PHONE_NUMBER: ' + message.phone_number + '; STATUS: ' + message.status);
-            });
-          }
-          console.log("FIM");
+        count = 0;
+        console.log('\n\nINIT...');
+        async.eachSeries(messages, function(message, callback) {
+          request.post({
+            url: config.smsgateway.url_send,
+            headers: {
+              'Authorization': config.smsgateway.token,
+              'Content-Type': 'application/vnd.api+json',
+              'Accept': 'application/vnd.api+json'
+            },
+            body: [message],
+            json: true
+          }, function(error, response, body) {
+            if (error) {
+              console.log(++count + '\tID: ' + message.id + '; PHONE_NUMBER: ' + message.phone_number + '; STATUS: ERROR');
+              return callback({message: message, error: error, body: body});
+            }
+            else if (response.statusCode !== 200) {
+              console.log(++count + '\tID: ' + message.id + '; PHONE_NUMBER: ' + message.phone_number + '; STATUS: ERROR - ' + JSON.stringify(body));
+              return callback({message: message, error: error, body: body});
+            }
+            else {
+              body.forEach((message) => {
+                console.log(++count + '\tID: ' + message.id + '; PHONE_NUMBER: ' + message.phone_number + '; STATUS: ' + message.status);
+              });
+              return setTimeout(callback, config.interval);
+            }
+          });
+        }, function(err) {
+          if (err) console.log("ERROR MESSAGE: ", err);
+          console.log('END');
         });
       }
     });
