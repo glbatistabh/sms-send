@@ -1,6 +1,7 @@
 {
   "from": "Me",
   "interval": 2000,
+  "device_default": "",
   "smsgateway": {
     "url_send": "https://smsgateway.me/api/v4/message/send",
     "url_status": "https://smsgateway.me/api/v4/message/ID",

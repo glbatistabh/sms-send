@@ -26,7 +26,7 @@ fs.createReadStream(inputFile)
     .pipe(csv())
     .on('data', function(data) {
 
-      data.device_id = data.device.replace(/[^0-9]/g, '');
+      data.device_id = data.hasOwnProperty('device') ? data.device.replace(/[^0-9]/g, '') : config.device_default;
 
       data.phone_number = data.phone.replace(/[^0-9]/g, '');
 
@@ -40,7 +40,7 @@ fs.createReadStream(inputFile)
       delete data.phone;
       delete data.timestamp;
 
-      console.log(++count + '\tPHONE: ' + data.phone_number + ';\tSIZE: ' + data.message.length + ';\tMESSAGE: ' + data.message);
+      console.log(++count + '\tPHONE: ' + data.divice + ';\tSIZE: ' + data.message.length + ';\tMESSAGE: ' + data.message);
       messages.push(data);
     })
     .on('end', function() {
