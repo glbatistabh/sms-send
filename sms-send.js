@@ -30,15 +30,17 @@ fs.createReadStream(inputFile)
 
       data.phone_number = data.phone.replace(/[^0-9]/g, '');
 
-      data.message = data.message.replace("#NAME#", data.hasOwnProperty('name') ? data.name : "");
-      data.message = data.message.replace("#PRD#", data.hasOwnProperty('product') ? data.product : "");
-      data.message = data.message.replace("#VALUE#", data.hasOwnProperty('value') ? data.value : "");
+      data.message = data.message.replace("#VAR1#", data.hasOwnProperty('var1') ? data.var1 : "");
+      data.message = data.message.replace("#VAR2#", data.hasOwnProperty('var2') ? data.var2 : "");
+      data.message = data.message.replace("#VAR3#", data.hasOwnProperty('var3') ? data.var3 : "");
+      data.message = data.message.replace("#VAR4#", data.hasOwnProperty('var4') ? data.var4 : "");
+      data.message = data.message.replace("#VAR5#", data.hasOwnProperty('var5') ? data.var5 : "");
 
       delete data.name;
       delete data.phone;
       delete data.timestamp;
 
-      console.log(++count + '\tPhone: ' + data.phone_number + ';\tMessage: ' + data.message);
+      console.log(++count + '\tPHONE: ' + data.phone_number + ';\tSIZE: ' + data.message.length + ';\tMESSAGE: ' + data.message);
       messages.push(data);
     })
     .on('end', function() {
