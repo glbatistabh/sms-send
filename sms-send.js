@@ -36,11 +36,15 @@ fs.createReadStream(inputFile)
       data.message = data.message.replace("#VAR4#", data.hasOwnProperty('var4') ? data.var4 : "");
       data.message = data.message.replace("#VAR5#", data.hasOwnProperty('var5') ? data.var5 : "");
 
-      delete data.name;
+      delete data.device;
       delete data.phone;
-      delete data.timestamp;
+      delete data.var1;
+      delete data.var2;
+      delete data.var3;
+      delete data.var4;
+      delete data.var5;
 
-      console.log(++count + '\tPHONE: ' + data.divice + ';\tSIZE: ' + data.message.length + ';\tMESSAGE: ' + data.message);
+      console.log(++count + '\tPHONE: ' + data.phone_number + ';\tSIZE: ' + data.message.length + ';\tMESSAGE: ' + data.message);
       messages.push(data);
     })
     .on('end', function() {
